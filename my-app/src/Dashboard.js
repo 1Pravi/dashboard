@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, useHistory } from 'react-router-dom';
 import { Line, Bar } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -28,11 +28,11 @@ ChartJS.register(
 
 // Reusable Sidebar Component
 const Sidebar = ({ activeItem, onMenuItemClick }) => {
-  const navigate = useNavigate();
+  const history = useHistory();
 
   const handleNavigation = (item) => {
     onMenuItemClick(item);
-    navigate(`/${item.toLowerCase()}`);
+    history.push(`/${item.toLowerCase()}`);
   };
 
   return (
@@ -159,15 +159,19 @@ const Dashboard = () => {
           <div className="header">
             <h2>Welcome, vinomassdon_k</h2>
           </div>
-          <Routes>
-            <Route path="/dashboard" element={<DashboardPage siteTrafficData={siteTrafficData} extraInfoData={extraInfoData} />} />
-            <Route path="/reports" element={<ReportsPage />} />
-            <Route path="/users" element={<UsersPage />} />
-            <Route path="/messages" element={<MessagesPage />} />
-            <Route path="/settings" element={<SettingsPage />} />
-            <Route path="/logout" element={<LogoutPage />} />
-            <Route path="/" element={<DashboardPage siteTrafficData={siteTrafficData} extraInfoData={extraInfoData} />} />
-          </Routes>
+          <Switch>
+            <Route path="/dashboard">
+              <DashboardPage siteTrafficData={siteTrafficData} extraInfoData={extraInfoData} />
+            </Route>
+            <Route path="/reports" component={ReportsPage} />
+            <Route path="/users" component={UsersPage} />
+            <Route path="/messages" component={MessagesPage} />
+            <Route path="/settings" component={SettingsPage} />
+            <Route path="/logout" component={LogoutPage} />
+            <Route path="/" exact>
+              <DashboardPage siteTrafficData={siteTrafficData} extraInfoData={extraInfoData} />
+            </Route>
+          </Switch>
         </div>
       </div>
     </Router>
