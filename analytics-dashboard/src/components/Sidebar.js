@@ -1,38 +1,48 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import './Sidebar.css';  // Import the specific CSS file for this component
+import { NavLink } from 'react-router-dom';
+import './Sitebar.css';
 
-const Sidebar = ({ activeItem, onMenuItemClick }) => {
-  const navigate = useNavigate();
-  const menuItems = [
-    { label: 'Dashboard', path: '/dashboard' },
-    { label: 'Reports', path: '/reports' },
-    { label: 'Users', path: '/users' },
-    { label: 'Messages', path: '/messages', badge: 25 },
-    { label: 'Settings', path: '/settings' },
-    { label: 'Logout', path: '/logout' },
-  ];
-
-  const handleNavigation = (item) => {
-    onMenuItemClick(item.label);
-    navigate(item.path);
-  };
-
+const Sidebar = () => {
   return (
     <div className="sidebar">
-      <h2>Analytics Dashboard</h2>
-      <ul>
-        {menuItems.map((item, index) => (
-          <li
-            key={index}
-            className={activeItem === item.label ? 'active' : ''}
-            onClick={() => handleNavigation(item)}
-          >
-            {item.label}
-            {item.badge && <span className="badge">{item.badge}</span>}
+      <div className="sidebar-header">
+        <img src="/assets/logo.svg" alt="Logo" className="logo" />
+        <h1>Analytics Dashboard</h1>
+      </div>
+      <nav className="sidebar-nav">
+        <ul>
+          <li>
+            <NavLink to="/" exact activeClassName="active">
+              Dashboard
+            </NavLink>
           </li>
-        ))}
-      </ul>
+          <li>
+            <NavLink to="/reports" activeClassName="active">
+              Reports
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/users" activeClassName="active">
+              Users
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/messages" activeClassName="active">
+              Messages
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/settings" activeClassName="active">
+              Settings
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/logout" activeClassName="active">
+              Logout
+            </NavLink>
+          </li>
+        </ul>
+      </nav>
     </div>
   );
 };
