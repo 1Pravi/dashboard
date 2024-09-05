@@ -1,0 +1,25 @@
+/* src/components/Header.css */
+.header {
+  padding: 15px;
+  background-color: #ecf0f1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header input {
+  width: 300px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #bdc3c7;
+}
+
+.metrics {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+}
+
+.metric {
+  text-align: center;
+}

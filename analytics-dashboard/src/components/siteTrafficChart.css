@@ -1,0 +1,13 @@
+/* src/components/ExtraInfoChart.css */
+.extra-info {
+  margin: 20px;
+}
+
+.extra-info ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.extra-info ul li {
+  margin-bottom: 10px;
+}
